@@ -1,0 +1,51 @@
+.dateRangeWrapper {
+  .iconCalendar,
+  .iconSearch {
+    width: 20px;
+    height: 20px;
+  }
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  border: 2px rgb(194, 194, 194) solid;
+  border-radius: 6px;
+  max-width: fit-content;
+  .dateRange {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .iconCalendar {
+      padding: 6px 12px;
+    }
+    .dateInput {
+      outline: none;
+      border: none;
+      width: 93px;
+      padding: 0;
+      margin: 0;
+      color: black;
+      font-size: medium;
+      margin-top: 3px;
+      &::-webkit-calendar-picker-indicator {
+        display: none;
+      }
+    }
+    .dateFrom {
+    }
+    .dateTo {
+      margin-right: 24px;
+    }
+    .rangeSeparator {
+      margin-right: 3px;
+      margin-left: 3px;
+    }
+  }
+  .iconSearch {
+    padding: 6px 12px;
+    background-color: rgb(230, 230, 230);
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
+  }
+}

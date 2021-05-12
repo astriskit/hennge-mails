@@ -1,0 +1,15 @@
+.results {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  font-weight: bold;
+  color: grey;
+  .title,
+  .suffix {
+    font-size: medium;
+  }
+  .body {
+    font-size: x-large;
+    margin-right: 3px;
+  }
+}
