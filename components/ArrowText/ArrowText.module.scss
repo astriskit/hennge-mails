@@ -1,0 +1,31 @@
+.arrowText {
+  font-weight: bold;
+  color: grey;
+  font-size: medium;
+
+  .title {
+    margin-right: 4px;
+  }
+  .arrow {
+    width: 10px;
+    height: 10px;
+    filter: invert(0.5);
+  }
+  .arrowUp {
+  }
+  .arrowDown {
+    transform: rotate(180deg);
+    transform-origin: middle;
+    position: relative;
+    top: 2px;
+  }
+  .arrowFlat {
+    display: none;
+  }
+}
+.activeArrowText {
+  color: black;
+  .arrow {
+    filter: unset;
+  }
+}

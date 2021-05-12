@@ -1,0 +1,18 @@
+$lightGrey: rgb(230, 230, 230);
+$lightGrey2: rgb(194, 194, 194);
+$lightGrey3: rgb(122, 120, 120);
+.tableHeader {
+  display: flex;
+  flex-wrap: nowrap;
+  background: $lightGrey;
+  border-top: 1px solid $lightGrey2;
+  border-bottom: 1px solid $lightGrey2;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  & > * {
+    margin-right: 6px;
+  }
+  .divider {
+    color: $lightGrey3;
+  }
+}
