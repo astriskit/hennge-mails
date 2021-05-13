@@ -13,7 +13,7 @@ export const Home = ({ emails = [] }: { emails: Email[] }) => (
   <div className={styles.home}>
     <DateRange className={styles.dateRange} />
     <Results className={styles.results}>{emails.length}</Results>
-    <TableHeader className={styles.tableHeader} />
+    <TableHeader className={styles.mobileTableHeader} />
     <div className={styles.emailList}>
       {emails.map(({ to, from, subject, date, body }, id) => (
         <MobileEmailCard
