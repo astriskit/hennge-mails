@@ -1,0 +1,84 @@
+$lightGrey: rgb(230, 230, 230);
+$lightGrey2: rgb(194, 194, 194);
+$lightGrey3: rgb(122, 120, 120);
+.mobileEmailCard {
+  display: grid;
+  grid-template-rows: 25px minmax(25px, auto) auto auto;
+  grid-template-columns: repeat(9, 1fr) auto 1fr auto;
+  grid-template-areas:
+    'mailIcon to to to to to to clip date date date arrow'
+    'mailIcon from from from from from from from from from hidden hidden'
+    'subject subject subject subject subject subject subject subject subject subject subject subject'
+    'body body body body body body body body body body body body';
+
+  justify-items: stretch;
+  align-items: flex-start;
+  row-gap: 4px;
+
+  .to {
+    font-size: medium;
+    font-weight: bold;
+    color: black;
+    grid-area: to;
+  }
+  .iconClip {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+    @media screen and (min-width: 375px) {
+      width: 18px;
+      height: 18px;
+    }
+    grid-area: clip;
+    justify-self: flex-end;
+  }
+  .arrowIcon {
+    width: 8px;
+    height: 8px;
+    grid-area: arrow;
+    margin-left: 3px;
+    margin-top: 5px;
+  }
+  .downArrowIcon {
+    transform-origin: center;
+    transform: rotate(90deg);
+  }
+  .mailIcon {
+    width: 16px;
+    grid-area: mailIcon;
+    margin-top: 5px;
+  }
+  .fromWrapper {
+    grid-area: from;
+    font-size: medium;
+    overflow: auto;
+  }
+  .subject {
+    grid-area: subject;
+    font-size: larger;
+    margin-top: 5px;
+  }
+  .body {
+    grid-area: body;
+    font-size: larger;
+  }
+  .date {
+    grid-area: date;
+    justify-self: flex-end;
+  }
+  .hiddenEmails {
+    grid-area: hidden;
+    color: whitesmoke;
+    background-color: $lightGrey3;
+    border-radius: 4px;
+    text-align: center;
+    width: fit-content;
+    padding: 2px 4px;
+    justify-self: flex-end;
+    font-size: small;
+    @media screen and (min-width: 425px) {
+      font-size: medium;
+      padding: 2px 4px 0px 4px;
+    }
+  }
+}

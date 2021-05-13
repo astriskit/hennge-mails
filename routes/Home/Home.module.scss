@@ -1,3 +1,6 @@
+$lightGrey: rgb(230, 230, 230);
+$lightGrey2: rgb(194, 194, 194);
+$lightGrey3: rgb(122, 120, 120);
 .home {
   * {
     font-family: Arial, Helvetica, sans-serif;
@@ -23,5 +26,13 @@
   }
   .results {
     margin-top: 20px;
+  }
+  .mobileEmailCard {
+    padding: 20px;
+    border-top: 1px solid $lightGrey2;
+    border-bottom: 1px solid $lightGrey2;
+  }
+  .mobileEmailCard:first-child {
+    border-top: unset;
   }
 }
