@@ -1,7 +1,10 @@
 .arrowText {
+  display: flex;
+  align-items: center;
+
   font-weight: bold;
   color: grey;
-  font-size: medium;
+  font-size: small;
 
   .title {
     margin-right: 4px;

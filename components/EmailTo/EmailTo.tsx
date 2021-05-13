@@ -1,9 +1,9 @@
 import React from 'react'
 import cx from 'classnames'
 
-import styles from './EmailFrom.module.scss'
+import styles from './EmailTo.module.scss'
 
-interface EmailFromProps {
+interface EmailToProps {
   children: string[]
   width: number // x ch
   className?: string
@@ -11,13 +11,13 @@ interface EmailFromProps {
   expanded?: boolean
 }
 
-export const EmailFrom = ({
+export const EmailTo = ({
   children,
   width,
   className = '',
   onHiddenChange = null,
   expanded = undefined,
-}: EmailFromProps) => {
+}: EmailToProps) => {
   const [hidden, setHidden] = React.useState<number>(0)
   const [emails, setEmails] = React.useState<string>('')
 
@@ -46,5 +46,5 @@ export const EmailFrom = ({
     onHiddenChange && onHiddenChange(hidden)
   }, [hidden])
 
-  return <div className={cx(styles.emailFrom, className)}>{emails}</div>
+  return <div className={cx(styles.EmailTo, className)}>{emails}</div>
 }

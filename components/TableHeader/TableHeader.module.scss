@@ -4,11 +4,12 @@ $lightGrey3: rgb(122, 120, 120);
 .tableHeader {
   display: flex;
   flex-wrap: nowrap;
+  align-self: center;
   background: $lightGrey;
   border-top: 1px solid $lightGrey2;
   border-bottom: 1px solid $lightGrey2;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 12px;
+  padding-bottom: 10px;
   & > * {
     margin-right: 6px;
   }

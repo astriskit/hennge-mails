@@ -16,7 +16,7 @@ $lightGrey3: rgb(122, 120, 120);
     }
   }
   .tableHeader {
-    margin-top: 8px;
+    margin-top: 5px;
     padding-left: unset;
     padding-right: unset;
     @media screen and (min-width: 375px) {
@@ -27,12 +27,16 @@ $lightGrey3: rgb(122, 120, 120);
   .results {
     margin-top: 20px;
   }
-  .mobileEmailCard {
-    padding: 20px;
-    border-top: 1px solid $lightGrey2;
-    border-bottom: 1px solid $lightGrey2;
-  }
-  .mobileEmailCard:first-child {
-    border-top: unset;
+  .emailList {
+    min-height: 75vh;
+    max-height: 75vh;
+    overflow-y: auto;
+    .mobileEmailCard {
+      padding: 15px 5px 10px 5px;
+      border-bottom: 1px solid $lightGrey2;
+      @media screen and (min-width: 375px) {
+        padding: 15px 15px 10px 20px;
+      }
+    }
   }
 }

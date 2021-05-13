@@ -2,13 +2,13 @@ import React from 'react'
 import cx from 'classnames'
 
 import { EmailDate } from '../EmailDate'
-import { EmailFrom } from '../EmailFrom'
+import { EmailTo } from '../EmailTo'
 
 import styles from './MobileEmailCard.module.scss'
 
 interface MobileEmailCardProps {
-  to: string
-  from: string[]
+  to: string[]
+  from: string
   subject: string
   date: number | string // parsible to date
   children: string
@@ -38,7 +38,9 @@ export const MobileEmailCard = ({
         alt="to-from"
         className={styles.mailIcon}
       />
-      <div className={styles.to}>{to}</div>
+      <div className={styles.from} title={from}>
+        {from}
+      </div>
       {hasAttachments && (
         <img
           src="/images/icon_clip.svg"
@@ -46,14 +48,14 @@ export const MobileEmailCard = ({
           className={styles.iconClip}
         />
       )}
-      <EmailFrom
+      <EmailTo
         width={25}
-        className={styles.fromWrapper}
+        className={styles.to}
         onHiddenChange={setHiddenEmails}
         expanded={showHiddenEmails}
       >
-        {from}
-      </EmailFrom>
+        {to}
+      </EmailTo>
       {!!hiddenEmails && (
         <div className={styles.hiddenEmails} onClick={toggleHiddenEmails}>
           {showHiddenEmails ? '-' : '+'}
@@ -66,7 +68,10 @@ export const MobileEmailCard = ({
         alt="arrow"
         className={cx(styles.arrowIcon, { [styles.downArrowIcon]: showBody })}
       />
-      <div className={styles.subject} onClick={toggleBody}>
+      <div
+        className={cx(styles.subject, { [styles.expanded]: showBody })}
+        onClick={toggleBody}
+      >
         {subject}
       </div>
       {showBody && <div className={styles.body}>{children}</div>}
