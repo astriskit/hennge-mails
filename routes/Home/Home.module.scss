@@ -69,4 +69,20 @@ $lightGrey3: rgb(122, 120, 120);
       margin-right: 40px;
     }
   }
+  .noResults {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    hr {
+      width: 94%;
+      border: 1px solid $lightGrey;
+    }
+    & > :last-child {
+      display: grid;
+      place-items: center;
+      flex: 1;
+      height: 80vh;
+    }
+  }
 }
