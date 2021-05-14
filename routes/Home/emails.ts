@@ -4,6 +4,7 @@ export interface Email {
   body: string
   subject: string
   date: number | string
+  attachments?: boolean
 }
 
 export const emails: Email[] = [

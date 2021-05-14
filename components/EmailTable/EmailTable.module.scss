@@ -1,0 +1,111 @@
+$lightGrey: rgb(230, 230, 230);
+$lightGrey2: rgb(194, 194, 194);
+$lightGrey3: rgb(122, 120, 120);
+@mixin flex {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.emailTable {
+  @mixin textEllipsis() {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  table {
+    $rowHeight: 20px;
+    $rowPadding: 14px 0 14px 0;
+    $addPCol: 10px;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    thead {
+      th {
+        background: $lightGrey;
+        border-top: 1px solid $lightGrey2;
+        & > * {
+          min-height: $rowHeight;
+          padding: $rowPadding;
+        }
+        .arrowSize {
+          font-size: 14px;
+        }
+      }
+      th:first-child {
+        padding-left: $addPCol;
+        width: 22%;
+      }
+      th:nth-child(2) {
+        width: 28%;
+      }
+      th:nth-child(3) {
+        width: auto;
+      }
+      th:last-child {
+        padding-right: $addPCol;
+        width: 10%;
+      }
+    }
+    tbody {
+      tr {
+        cursor: pointer;
+        td {
+          border-top: 1px solid $lightGrey2;
+          padding: $rowPadding;
+        }
+      }
+      tr.hasFocus,
+      tr.expanded {
+        td {
+          color: blue;
+          background: rgba(168, 168, 236, 0.13);
+        }
+      }
+      tr:not(.body) {
+        td {
+          vertical-align: middle;
+        }
+        td:first-child {
+          & > * {
+            text-transform: lowercase;
+            @include textEllipsis();
+            padding-right: 12%;
+            padding-left: $addPCol;
+          }
+        }
+        td:nth-child(2) {
+          @include flex();
+          & > *:first-child {
+            text-transform: lowercase;
+            @include textEllipsis();
+            max-width: 80%;
+          }
+          & > :last-child {
+            margin-right: 20px;
+            @media screen and (min-width: 1024px) {
+              position: relative;
+              left: -10%;
+            }
+          }
+        }
+        td:nth-child(3) {
+          .subject {
+            @include textEllipsis();
+            float: left;
+            max-width: 80%;
+          }
+          .clipIcon {
+            width: 16px;
+            height: 16px;
+            float: right;
+            margin-right: 5%;
+          }
+        }
+      }
+    }
+  }
+}

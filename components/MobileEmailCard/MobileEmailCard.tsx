@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 import { EmailDate } from '../EmailDate'
 import { EmailTo } from '../EmailTo'
+import { GreyBox } from '../GreyBox'
 
 import styles from './MobileEmailCard.module.scss'
 
@@ -31,6 +32,7 @@ export const MobileEmailCard = ({
 
   const toggleBody = () => setShowBody((t) => !t)
   const toggleHiddenEmails = () => setShowHiddenEmails((t) => !t)
+
   return (
     <div className={cx(styles.mobileEmailCard, className)}>
       <img
@@ -57,10 +59,10 @@ export const MobileEmailCard = ({
         {to}
       </EmailTo>
       {!!hiddenEmails && (
-        <div className={styles.hiddenEmails} onClick={toggleHiddenEmails}>
+        <GreyBox className={styles.hiddenEmails} onClick={toggleHiddenEmails}>
           {showHiddenEmails ? '-' : '+'}
           {hiddenEmails}
-        </div>
+        </GreyBox>
       )}
       <EmailDate className={styles.date}>{date}</EmailDate>
       <img

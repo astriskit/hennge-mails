@@ -7,9 +7,15 @@
   .title,
   .suffix {
     font-size: small;
+    @media screen and (min-width: 600px) {
+      font-size: medium;
+    }
   }
   .body {
     font-size: medium;
     margin-right: 3px;
+    @media screen and (min-width: 600px) {
+      font-size: large;
+    }
   }
 }

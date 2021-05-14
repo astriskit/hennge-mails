@@ -1,5 +1,6 @@
 import {
   DateRange,
+  EmailTable,
   MobileEmailCard,
   Results,
   TableHeader,
@@ -28,5 +29,6 @@ export const Home = ({ emails = [] }: { emails: Email[] }) => (
         </MobileEmailCard>
       ))}
     </div>
+    <EmailTable emails={emails} className={styles.emailTable} />
   </div>
 )

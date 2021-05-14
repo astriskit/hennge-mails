@@ -2,7 +2,7 @@ import cx from 'classnames'
 
 import styles from './ArrowText.module.scss'
 
-interface ArrowTextProps {
+export interface ArrowTextProps {
   children: string
   type?: 'up' | 'down' | 'flat'
   className?: string

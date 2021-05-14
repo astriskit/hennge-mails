@@ -6,6 +6,9 @@ $lightGrey3: rgb(122, 120, 120);
     font-family: Arial, Helvetica, sans-serif;
   }
   padding-top: 20px;
+  @media screen and (min-width: 600px) {
+    padding-top: 30px;
+  }
   .dateRange,
   .results {
     margin-left: auto;
@@ -13,6 +16,12 @@ $lightGrey3: rgb(122, 120, 120);
     @media screen and (min-width: 375px) {
       margin-left: 20px;
       margin-right: unset;
+    }
+    @media screen and (min-width: 600px) {
+      margin-left: 10px;
+    }
+    @media screen and (min-width: 1024px) {
+      margin-left: 40px;
     }
   }
   .mobileTableHeader {
@@ -43,6 +52,21 @@ $lightGrey3: rgb(122, 120, 120);
       @media screen and (min-width: 375px) {
         padding: 15px 15px 10px 20px;
       }
+    }
+  }
+  .emailTable {
+    display: none;
+    @media screen and (min-width: 600px) {
+      display: block;
+      max-height: 80vh;
+      overflow-y: auto;
+      margin-top: 6px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    @media screen and (min-width: 1024px) {
+      margin-left: 40px;
+      margin-right: 40px;
     }
   }
 }

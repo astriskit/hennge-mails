@@ -1,0 +1,75 @@
+.emailCard {
+  display: grid;
+  align-items: center;
+  justify-items: flex-start;
+
+  grid-template-columns: 20px 20px 30px 30px repeat(8, 1fr);
+  grid-template-rows: auto auto auto auto auto auto auto;
+
+  grid-template-areas:
+    'fromTitle fromTitle fromTitle from from from from from from from from from'
+    'toTitle toTitle toTitle to to to to to to to to to'
+    'subjectTitle subjectTitle subjectTitle subject subject subject subject subject subject subject subject subject'
+    'attTitle attTitle attTitle attTitle att att att att att att att att'
+    'bodyTitle bodyTitle bodyTitle bodyTitle bodyTitle bodyTitle bodyTitle bodyTitle bodyTitle bodyTitle bodyTitle bodyTitle'
+    'body body body body body body body body body body body body'
+    'bodyEnd bodyEnd bodyEnd bodyEnd bodyEnd bodyEnd bodyEnd bodyEnd bodyEnd bodyEnd bodyEnd bodyEnd';
+
+  row-gap: 10px;
+
+  .toTitle,
+  .fromTitle,
+  .subjectTitle,
+  .attTitle {
+    font-weight: bold;
+  }
+  .toTitle,
+  .fromTitle,
+  .attTitle,
+  .att,
+  .subject,
+  .subjectTitle,
+  .body {
+    text-transform: capitalize;
+  }
+  .toTitle {
+    grid-area: toTitle;
+  }
+  .to {
+    grid-area: to;
+  }
+  .fromTitle {
+    grid-area: fromTitle;
+  }
+  .from {
+    grid-area: from;
+  }
+  .subjectTitle {
+    grid-area: subjectTitle;
+  }
+  .subject {
+    grid-area: subject;
+  }
+  .bodyTitle {
+    grid-area: bodyTitle;
+    justify-self: center;
+    text-transform: capitalize;
+    font-size: normal;
+  }
+  .body {
+    grid-area: body;
+    white-space: normal;
+    justify-self: center;
+  }
+  .attTitle {
+    grid-area: attTitle;
+  }
+  .att {
+    grid-area: att;
+    margin-left: 10px;
+  }
+  .bodyEnd {
+    grid-area: bodyEnd;
+    justify-self: center;
+  }
+}

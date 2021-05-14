@@ -1,6 +1,10 @@
 import cx from 'classnames'
+import { ArrowDate } from '../ArrowDate'
+import { ArrowFrom } from '../ArrowFrom'
+import { ArrowSubject } from '../ArrowSubject'
 
 import { ArrowText } from '../ArrowText'
+import { ArrowTo } from '../ArrowTo'
 
 import styles from './TableHeader.module.scss'
 
@@ -14,14 +18,12 @@ const VerticalDivider = ({ className = '' }) => (
 
 export const TableHeader = ({ className = '' }: TableHeaderProps) => (
   <div className={cx(styles.tableHeader, className)}>
-    <ArrowText type="down" active>
-      From
-    </ArrowText>
+    <ArrowFrom type="down" active />
     <VerticalDivider className={styles.divider} />
-    <ArrowText>To</ArrowText>
+    <ArrowTo />
     <VerticalDivider className={styles.divider} />
-    <ArrowText>Subject</ArrowText>
+    <ArrowSubject />
     <VerticalDivider className={styles.divider} />
-    <ArrowText>Date</ArrowText>
+    <ArrowDate />
   </div>
 )

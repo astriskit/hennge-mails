@@ -1,0 +1,12 @@
+$lightGrey: rgb(230, 230, 230);
+$lightGrey2: rgb(194, 194, 194);
+$lightGrey3: rgb(122, 120, 120);
+.greyBox {
+  color: whitesmoke;
+  background-color: $lightGrey3;
+  border-radius: 4px;
+  text-align: center;
+  width: fit-content;
+  padding: 1px 4px;
+  font-size: small;
+}
