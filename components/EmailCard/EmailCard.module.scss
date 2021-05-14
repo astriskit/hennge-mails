@@ -44,6 +44,10 @@
   .from {
     grid-area: from;
   }
+  .to,
+  .from {
+    text-transform: lowercase;
+  }
   .subjectTitle {
     grid-area: subjectTitle;
   }

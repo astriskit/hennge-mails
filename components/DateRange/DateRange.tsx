@@ -3,12 +3,13 @@ import cx from 'classnames'
 
 import styles from './DateRange.module.scss'
 
-type DateNumber = number | ''
+export type DateNumber = string | number | ''
+export type TypeDateRange = { from: DateNumber; to: DateNumber }
 interface DateRangeProps {
-  default?: { from: DateNumber; to: DateNumber }
-  value?: { from: DateNumber; to: DateNumber }
+  default?: TypeDateRange
+  value?: TypeDateRange
   onChange?(from: DateNumber, to: DateNumber): void
-  onOk?(): void
+  onOk?(from: DateNumber, to: DateNumber): void
   className?: string
 }
 
@@ -22,13 +23,22 @@ export const DateRange = ({
   const [range, setRange] = useState({ from: vFrom || dFrom, to: vTo || dTo })
 
   useEffect(() => {
-    onChange && onChange(range.from, range.to)
-  }, [range])
+    setRange({ from: vFrom, to: vTo })
+  }, [vFrom, vTo])
+
+  useEffect(() => {
+    onChange && !onOk && onChange(range.from, range.to)
+  }, [range.from, range.to])
 
   const changeHandler = (key: 'from' | 'to') => ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) =>
     setRange((r) => ({ ...r, [key]: value as DateNumber }))
+
+  const onReset = () =>
+    onOk ? onOk('', '') : onChange ? onChange('', '') : null
+
+  const resetDisabled = !range.from || !range.to
 
   return (
     <div className={cx(styles.dateRangeWrapper, className)}>
@@ -56,8 +66,17 @@ export const DateRange = ({
         src="/images/icon_search.svg"
         alt="search"
         className={styles.iconSearch}
-        onClick={onOk}
+        onClick={() => onOk(range.from, range.to)}
       />
+      {onReset && !resetDisabled && (
+        <img
+          onClick={onReset}
+          src="/images/reset.png"
+          alt="reset"
+          className={cx(styles.iconSearch, styles.iconReset)}
+          title="reset"
+        />
+      )}
     </div>
   )
 }

@@ -40,7 +40,7 @@ export const EmailTo = ({
         }
       }
     }
-  }, [expanded])
+  }, [expanded, children])
 
   React.useEffect(() => {
     onHiddenChange && onHiddenChange(hidden)

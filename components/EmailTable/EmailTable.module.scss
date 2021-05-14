@@ -27,12 +27,16 @@ $lightGrey3: rgb(122, 120, 120);
       th {
         background: $lightGrey;
         border-top: 1px solid $lightGrey2;
+        cursor: pointer;
         & > * {
           min-height: $rowHeight;
           padding: $rowPadding;
         }
         .arrowSize {
           font-size: 14px;
+        }
+        .arrowTo {
+          cursor: initial;
         }
       }
       th:first-child {

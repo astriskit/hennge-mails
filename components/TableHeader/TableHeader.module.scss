@@ -16,4 +16,10 @@ $lightGrey3: rgb(122, 120, 120);
   .divider {
     color: $lightGrey3;
   }
+  .cursor {
+    cursor: pointer;
+  }
+  .to {
+    cursor: initial;
+  }
 }

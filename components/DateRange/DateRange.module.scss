@@ -33,8 +33,6 @@ $lightGrey2: rgb(194, 194, 194);
         display: none;
       }
     }
-    .dateFrom {
-    }
     .dateTo {
       margin-right: 24px;
     }
@@ -49,5 +47,11 @@ $lightGrey2: rgb(194, 194, 194);
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     cursor: pointer;
+  }
+  .iconSearch:active {
+    background-color: whitesmoke;
+  }
+  .iconReset {
+    margin-left: -1px;
   }
 }
