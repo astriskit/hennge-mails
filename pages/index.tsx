@@ -76,7 +76,7 @@ const Mails = ({ emails = [] }: { emails: Email[] }) => {
       }
     }
     setFiltered(newFiltered)
-  }, [filter.key, filter.value, sort.key, sort.value])
+  }, [emails, filter.key, filter.value, sort.key, sort.value])
 
   const handleSort = (key: sortKey, value: sortOrd) => {
     setSort({ key, value })

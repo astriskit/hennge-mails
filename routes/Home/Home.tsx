@@ -8,7 +8,7 @@ import {
   TableHeader,
 } from '../../components'
 
-import { TypeDateRange, DateNumber } from '../../components/DateRange'
+import { TypeDateRange } from '../../components/DateRange'
 
 import { Email } from './emails'
 
@@ -76,6 +76,8 @@ export const Home = ({
               from={from}
               subject={subject}
               date={date}
+              sortKey={sort.key}
+              tKey={id}
             >
               {body}
             </MobileEmailCard>

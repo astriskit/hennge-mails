@@ -45,6 +45,9 @@ $lightGrey3: rgb(122, 120, 120);
       }
       th:nth-child(2) {
         width: 28%;
+        @media screen and (min-width: 1025px) {
+          width: 25%;
+        }
       }
       th:nth-child(3) {
         width: auto;
@@ -60,6 +63,9 @@ $lightGrey3: rgb(122, 120, 120);
         td {
           border-top: 1px solid $lightGrey2;
           padding: $rowPadding;
+        }
+        td.active {
+          font-weight: bold;
         }
       }
       tr.hasFocus,
@@ -107,6 +113,11 @@ $lightGrey3: rgb(122, 120, 120);
             height: 16px;
             float: right;
             margin-right: 5%;
+          }
+          .blueClipIcon {
+            :global(.a) {
+              fill: blue;
+            }
           }
         }
       }

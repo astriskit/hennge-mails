@@ -15,6 +15,7 @@ import { EmailCard } from '../EmailCard'
 
 import { sortKey, sortOrd } from '../../routes/Home/Home'
 import { useSort } from '../../utils'
+import { IconClip } from './IconClip'
 
 interface EmailTableProps {
   emails: Email[]
@@ -24,7 +25,13 @@ interface EmailTableProps {
   onSort(id: sortKey, type: sortOrd): void
 }
 
-const hasAttachment = true
+const hasAttachment = (mapId: number) => {
+  // attachment
+  if (mapId % 5) {
+    return true
+  }
+  return false
+}
 
 export const EmailTable = ({
   emails = [],
@@ -34,6 +41,51 @@ export const EmailTable = ({
   onSort,
 }: EmailTableProps) => {
   const { active, type, handleSort } = useSort(sortKey, sortOrder, onSort)
+
+  const [hiddenEmailsInRow, setHiddenEmailsInRow] = React.useState<
+    { key: string; value: number }[]
+  >([])
+  const [expandedRows, setExpandedRows] = React.useState<string[]>([])
+  const [haveFocus, setHaveFocus] = React.useState<string[]>([])
+
+  const handleMouseEnter = (mapId: string) => () =>
+    setHaveFocus((t) => [...t, mapId])
+  const handleMouseLeave = (mapId: string) => () =>
+    setHaveFocus((t) => t.filter((r) => r !== mapId))
+
+  const hasFocus = (mapId: string) => haveFocus.includes(mapId)
+  const expanded = (mapId: string) => expandedRows.includes(mapId)
+
+  const setHiddenEmails = (mapId: string, value: number) =>
+    setHiddenEmailsInRow((t) => {
+      let added = false
+      for (let ob of t) {
+        if (ob.key === mapId) {
+          ob.value = value
+          added = true
+        }
+      }
+      if (!added) {
+        t.push({ key: mapId, value })
+      }
+      return t
+    })
+  const hiddenEmails = (mapId: string) => {
+    const found = hiddenEmailsInRow.find(({ key, value }) => key === mapId)
+    if (!found) {
+      return 0
+    }
+    return found.value
+  }
+
+  const toggleBody = (mapId: string) => () =>
+    setExpandedRows((t) => {
+      if (t.includes(mapId)) {
+        return t.filter((r) => r !== mapId)
+      }
+      return [...t, mapId]
+    })
+
   return (
     <div className={cx(styles.emailTable, className)}>
       <table>
@@ -67,54 +119,49 @@ export const EmailTable = ({
         </thead>
         <tbody>
           {emails.map(({ to, from, subject, date, body }, id) => {
-            const [hiddenEmails, setHiddenEmails] = React.useState<number>(0)
-            const [expanded, setExpanded] = React.useState<boolean>(false)
-            const [hasFocus, setHasFocus] = React.useState<boolean>(false)
-
-            const handleMouseEnter = () => setHasFocus(true)
-            const handleMouseLeave = () => setHasFocus(false)
-
-            const toggleBody = () => setExpanded((t) => !t)
+            const mapId = `${to}-${from}-${subject}-${date}`
             return (
               <React.Fragment key={id}>
                 <tr
                   key={id}
-                  onClick={toggleBody}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  onClick={toggleBody(mapId)}
+                  onMouseEnter={handleMouseEnter(mapId)}
+                  onMouseLeave={handleMouseLeave(mapId)}
                   className={cx({
-                    [styles.hasFocus]: hasFocus,
-                    [styles.expanded]: expanded,
+                    [styles.hasFocus]: hasFocus(mapId),
+                    [styles.expanded]: expanded(mapId),
                   })}
                 >
-                  <td>
+                  <td className={cx({ [styles.active]: active('from') })}>
                     <div>{from}</div>
                   </td>
-                  <td>
+                  <td className={cx({ [styles.active]: active('to') })}>
                     <EmailTo
                       width={25}
                       className={styles.to}
-                      onHiddenChange={setHiddenEmails}
+                      onHiddenChange={(num) => setHiddenEmails(mapId, num)}
                     >
                       {to}
                     </EmailTo>
-                    {!!hiddenEmails && <GreyBox>+{hiddenEmails}</GreyBox>}
+                    {!!hiddenEmails(mapId) && (
+                      <GreyBox>+{hiddenEmails(mapId)}</GreyBox>
+                    )}
                   </td>
-                  <td>
+                  <td className={cx({ [styles.active]: active('subject') })}>
                     <div className={styles.subject}>{subject}</div>
-                    {hasAttachment && (
-                      <img
-                        src="/images/icon_clip.svg"
-                        alt="has-attachments"
-                        className={styles.clipIcon}
+                    {hasAttachment(id) && (
+                      <IconClip
+                        className={cx(styles.clipIcon, {
+                          [styles.blueClipIcon]: hasFocus(mapId),
+                        })}
                       />
                     )}
                   </td>
-                  <td>
+                  <td className={cx({ [styles.active]: active('date') })}>
                     <EmailDate>{date}</EmailDate>
                   </td>
                 </tr>
-                {expanded && (
+                {expanded(mapId) && (
                   <tr key={`${id}-extended`} className={styles.body}>
                     <td colSpan={4}>
                       <EmailCard
@@ -123,7 +170,7 @@ export const EmailTable = ({
                         body={body}
                         subject={subject}
                         date={date}
-                        attachments={hasAttachment}
+                        attachments={hasAttachment(id)}
                         className={styles.emailCard}
                       />
                     </td>

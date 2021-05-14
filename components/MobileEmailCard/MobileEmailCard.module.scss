@@ -17,7 +17,6 @@ $lightGrey3: rgb(122, 120, 120);
   font-size: small;
 
   .from {
-    font-weight: bold;
     color: black;
     grid-area: from;
     text-transform: lowercase;
@@ -82,5 +81,8 @@ $lightGrey3: rgb(122, 120, 120);
   .hiddenEmails {
     grid-area: hidden;
     justify-self: flex-end;
+  }
+  .active {
+    font-weight: bold;
   }
 }

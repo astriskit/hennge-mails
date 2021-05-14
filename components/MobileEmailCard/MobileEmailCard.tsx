@@ -6,6 +6,7 @@ import { EmailTo } from '../EmailTo'
 import { GreyBox } from '../GreyBox'
 
 import styles from './MobileEmailCard.module.scss'
+import { sortKey as sKey } from '../../routes/Home/Home'
 
 interface MobileEmailCardProps {
   to: string[]
@@ -14,9 +15,11 @@ interface MobileEmailCardProps {
   date: number | string // parsible to date
   children: string
   className?: string
+  sortKey: sKey
+  tKey: number
 }
 
-const hasAttachments = true
+const hasAttachments = (tKey: number) => (tKey % 5 === 0 ? false : true)
 
 export const MobileEmailCard = ({
   to,
@@ -25,6 +28,8 @@ export const MobileEmailCard = ({
   children,
   date,
   className,
+  sortKey,
+  tKey,
 }: MobileEmailCardProps) => {
   const [hiddenEmails, setHiddenEmails] = React.useState<number>(0)
   const [showHiddenEmails, setShowHiddenEmails] = React.useState<boolean>(false)
@@ -40,10 +45,13 @@ export const MobileEmailCard = ({
         alt="to-from"
         className={styles.mailIcon}
       />
-      <div className={styles.from} title={from}>
+      <div
+        className={cx(styles.from, { [styles.active]: sortKey === 'from' })}
+        title={from}
+      >
         {from}
       </div>
-      {hasAttachments && (
+      {hasAttachments(tKey) && (
         <img
           src="/images/icon_clip.svg"
           alt="attachment"
@@ -52,7 +60,7 @@ export const MobileEmailCard = ({
       )}
       <EmailTo
         width={25}
-        className={styles.to}
+        className={cx(styles.to, { [styles.active]: sortKey === 'to' })}
         onHiddenChange={setHiddenEmails}
         expanded={showHiddenEmails}
       >
@@ -64,14 +72,21 @@ export const MobileEmailCard = ({
           {hiddenEmails}
         </GreyBox>
       )}
-      <EmailDate className={styles.date}>{date}</EmailDate>
+      <EmailDate
+        className={cx(styles.date, { [styles.active]: sortKey === 'date' })}
+      >
+        {date}
+      </EmailDate>
       <img
         src="/images/icon_arrow02.svg"
         alt="arrow"
         className={cx(styles.arrowIcon, { [styles.downArrowIcon]: showBody })}
       />
       <div
-        className={cx(styles.subject, { [styles.expanded]: showBody })}
+        className={cx(styles.subject, {
+          [styles.expanded]: showBody,
+          [styles.active]: sortKey === 'subject',
+        })}
         onClick={toggleBody}
       >
         {subject}

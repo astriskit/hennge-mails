@@ -1,3 +1,16 @@
+## About
+
+- Objective: to create the screens defined in `./result.pdf`.
+
+## Highlights of project
+
+- Uses web-native css & html to bring about the effects.
+- Nextjs/reactjs based setup.
+- Date-range filter and various sorters are functional.
+- Hooks are used to manage the state/effects at various levels.
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
